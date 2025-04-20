@@ -1,6 +1,10 @@
 name: pcb_image
 on:
   push:
+  workflow_dispatch:
+    branches:
+      - main
+
 jobs:
   render-image:
     name: render-image
@@ -14,7 +18,8 @@ jobs:
         with:
           pcb_file: IV4/IV4.kicad_pcb
           output_path: ${{ github.workspace }}/images
-          background: transparent # Remove for no transparency
+          background: transparent
+          animation: gif
 
       - name: Setup Pages
         if: github.ref == 'refs/heads/main'
